@@ -35,21 +35,23 @@ $guess = "1470"; // Tahmin edilen değer
  * yazması gerekiyor.
  */
 
-if($gender === "female"){ // $gender değeri "female" ise if içerisindeki işlemleri yap
-    //Kadınlar için;
-    $metabolismConst = 447.593; // Metabolizma sabit değerinin değişkene atanması
-    $weightConst = 9.247; // Kilo sabit değerinin değişkene atanması
-    $heightConst = 3.098; // Boy sabit değerinin değişkene atanması
-    $ageConst = 4.330; // Yaş sabit değerinin değişkene atanması
-}elseif($gender === "male"){ // $gender değeri "male" ise elseif içerisindeki işlemleri yap
-    //Erkekler için;
-    $metabolismConst = 88.362; // Metabolizma sabit değerinin değişkene atanması
-    $weightConst = 13.397; // Kilo sabit değerinin değişkene atanması
-    $heightConst = 4.799; // Boy sabit değerinin değişkene atanması
-    $ageConst = 5.677; // Yaş sabit değerinin değişkene atanması
-}
+//Kadınlar için;
+define("WOMEN_METABOLISM", 447.593);// Metabolizma sabit değerinin değişkene atanması
+define("WOMEN_WEIGHT", 9.247);// Kilo sabit değerinin değişkene atanması
+define("WOMEN_HEIGHT", 3.098);// Boy sabit değerinin değişkene atanması
+define("WOMEN_AGE", 4.330);// Yaş sabit değerinin değişkene atanması
 
-$basalMetabolism = $metabolismConst+($weightConst*$weight)+($heightConst*$height)-($ageConst*$age); // işlem sonucunu $basalMetabolism değişkenine ata
+//Erkekler için;
+define("MEN_METABOLISM", 88.362); // Metabolizma sabit değerinin değişkene atanması
+define("MEN_WEIGHT", 13.397);// Kilo sabit değerinin değişkene atanması
+define("MEN_HEIGHT", 4.799);// Boy sabit değerinin değişkene atanması
+define("MEN_AGE", 5.677);// Yaş sabit değerinin değişkene atanması
+
+if($gender === "female"){ // $gender değeri "female" ise if içerisindeki işlem(ler)i yap
+    $basalMetabolism = WOMEN_METABOLISM+(WOMEN_WEIGHT*$weight)+(WOMEN_HEIGHT*$height)-(WOMEN_AGE*$age); // işlem sonucunu $basalMetabolism değişkenine ata
+}elseif($gender === "male"){ // $gender değeri "male" ise elseif içerisindeki işlem(ler)i yap
+    $basalMetabolism = MEN_METABOLISM+(MEN_WEIGHT*$weight)+(MEN_HEIGHT*$height)-(MEN_AGE*$age); // işlem sonucunu $basalMetabolism değişkenine ata
+}
 
 echo "BMR: $basalMetabolism<br>"; // ekrana BMR: ile $basalMetabolism içindeki değeri yazıp alt satıra geç
 
